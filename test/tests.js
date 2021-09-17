@@ -33,9 +33,9 @@ describe('ISAlive Tests', function()
     it('should return true when ping returns true three times in a row', function()
     {
         var pinger = sinon.stub();
-        pinger.onFirstCall.returns(true);
-        pinger.onSecondCall.returns(true);
-        pinger.onThirdCall.returns(true);
+        pinger.onFirstCall().returns(true);
+        pinger.onSecondCall().returns(true);
+        pinger.onThirdCall().returns(true);
 
         var websiteIsAlive = IsAlive(pinger);
 
