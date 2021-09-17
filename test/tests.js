@@ -43,3 +43,17 @@ describe('ISAlive Tests', function()
     })
 
 });
+
+describe('Spy tests', function()
+{
+    it('should log result of add', function()
+    {
+        var numberOne = 1;
+        var numberTwo = 2;
+
+        var logSpy = sinon.spy();
+        Add(numberOne, numberTwo, logSpy);
+
+        logSpy.called.should.be.true;
+    });
+})
