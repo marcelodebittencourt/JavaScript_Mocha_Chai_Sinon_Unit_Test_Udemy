@@ -1,7 +1,12 @@
 var chai = require('chai');
+var should = require('chai').should();
+var expect = chai.expect;
 var assert = chai.assert;
-var Add = require('../maths');
+
 var sinon = require('sinon');
+
+var Add = require('../maths');
+var IsAlive = require('../functions');
 
 describe('Add tests', function()
 {
@@ -11,4 +16,30 @@ describe('Add tests', function()
         var expectedResult = 3;
         assert.equal(expectedResult, result);
     });
+});
+
+describe('ISAlive Tests', function()
+{
+    it('should return true when ping callback returns true', function()
+    {
+        var pinger = sinon.stub();
+        pinger.returns(true);
+
+        var websiteIsAlive = IsAlive(pinger);
+
+        websiteIsAlive.should.be.true;
+    });
+
+    it('should return true when ping returns true three times in a row', function()
+    {
+        var pinger = sinon.stub();
+        pinger.onFirstCall.returns(true);
+        pinger.onSecondCall.returns(true);
+        pinger.onThirdCall.returns(true);
+
+        var websiteIsAlive = IsAlive(pinger);
+
+        websiteIsAlive.should.be.true;
+    })
+
 });
